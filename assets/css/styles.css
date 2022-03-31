@@ -21,6 +21,14 @@ body {
   color:hsl(230, 80%, 52%);
 }
 
+.confirm {
+  font-family: courier;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color:hsl(230, 80%, 52%);
+}
+
 .score{
   display: flex;
   justify-content: right;

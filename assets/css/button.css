@@ -1,10 +1,12 @@
 .bubbly-button {
   font-family: courier;
   display: inline-block;
-  font-size: 1em;
+  font-size: 35px;
   padding: 1em 2em;
   margin-top: 100px;
   margin-bottom: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
   -webkit-appearance: none;
   -moz-appearance: none;
        appearance: none;
