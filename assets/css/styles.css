@@ -35,6 +35,7 @@ body {
   align-items: center;
   font-family: courier;
   font-size: 20px;
+  font-weight: bold;
   color:hsl(230, 80%, 52%);
   padding-right: 5%;
 }
