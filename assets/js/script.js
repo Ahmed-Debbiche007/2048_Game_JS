@@ -4,6 +4,7 @@ import Tile from "./Tile.js"
 const body = document.getElementsByTagName("body")[0]
 
 function start() {
+  body.innerHTML = ""
   const game = document.createElement("div")
   game.id = "game"
   body.appendChild(game)
@@ -12,6 +13,7 @@ function start() {
   sc.innerHTML = "Score:0"
   sc.className = "score"
   game.appendChild(sc)
+  var won = false
 
   const gameBoard = document.createElement("div")
   gameBoard.className = "game-board"
@@ -154,6 +156,7 @@ function start() {
 
   function canMove(cells) {
     addScore()
+    ifwin()
     return cells.some(group => {
       return group.some((cell, index) => {
         if (index === 0) return false
@@ -165,12 +168,48 @@ function start() {
   }
 
   function addScore(cells) {
+    
     let score = 0
     grid.cells.forEach(cell => score = score + cell.score)
     sc.innerHTML = "Score:" + score
     return score
   }
 
+  function ifwin() { if (!won){
+    const win = document.getElementsByClassName("tile")
+    for (let i = 0; i < win.length; i++) {
+      if (win[i].innerHTML == "2048") {
+        won = true
+        setupInput()
+        body.innerHTML=""
+        const div = document.createElement("div")
+        div.innerHTML = "You won <br> Continue? <br>"
+        div.className = "confirm"
+        const div2 = document.createElement("div")
+        const continu = document.createElement("button")
+        continu.innerHTML="Yes!"
+        continu.className = "bubbly-button"
+        continu.addEventListener("click",()=>{
+          body.innerHTML =""
+          body.appendChild(game)
+        })
+        const rpbtn = document.createElement("button")
+        rpbtn.innerHTML="Restart!"
+        rpbtn.className = "bubbly-button"
+        rpbtn.style.setProperty("background-color", "hsl(255, 80%, 70%)")
+        rpbtn.addEventListener("click",()=>{
+          body.innerHTML =""
+          start()
+        })
+        div2.appendChild(continu)
+        div2.appendChild(rpbtn)
+        div.appendChild(div2)
+        body.appendChild(div)
+        
+      }
+    }
+  }
+}
 }
 
 function lost() {
@@ -180,6 +219,7 @@ function lost() {
   const rp = document.createElement("button")
   rp.innerHTML = "Play Again!"
   rp.className = "bubbly-button"
+  rp.style.setProperty("font-size", "1em")
   rp.addEventListener("click", () => {
     body.innerHTML = ""
     start()
